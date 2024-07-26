@@ -1,0 +1,88 @@
+Sure! Here is the extended UML diagram with added classes and their relationships:
+
+```plantuml
+@startuml
+class User {
+  +String name
+  +String email
+  +void login()
+}
+class Order {
+  +int orderId
+  +Date date
+  +void placeOrder()
+}
+class Product {
+  +int productId
+  +String name
+  +double price
+}
+class ShoppingCart {
+  +List<Product> products
+  +void addProduct(Product product)
+  +void removeProduct(Product product)
+}
+User -- Order
+User -- ShoppingCart
+Order "contains" * -- "items" Product
+ShoppingCart "contains" * -- "products" Product
+@enduml
+```
+
+Now, let me generate the Spring Boot code for these classes and their relationships.Here is the Spring Boot code for the extended UML diagram with `User`, `Order`, `Product`, and `ShoppingCart` classes:
+
+```java
+// User.java
+public class User {
+    private String name;
+    private String email;
+
+    // Getters and Setters
+    
+    public void login() {
+        // Login logic
+    }
+}
+
+// Order.java
+import java.util.Date;
+
+public class Order {
+    private int orderId;
+    private Date date;
+
+    // Getters and Setters
+
+    public void placeOrder() {
+        // Place order logic
+    }
+}
+
+// Product.java
+public class Product {
+    private int productId;
+    private String name;
+    private double price;
+
+    // Getters and Setters
+}
+
+// ShoppingCart.java
+import java.util.List;
+
+public class ShoppingCart {
+    private List<Product> products;
+
+    // Getters and Setters
+
+    public void addProduct(Product product) {
+        // Add product to cart logic
+    }
+
+    public void removeProduct(Product product) {
+        // Remove product from cart logic
+    }
+}
+```
+
+You can create Spring Boot services and repositories for these classes based on your application requirements. Let me know if you need help with that.

@@ -1,0 +1,49 @@
+To implement the service layer in Domain-Driven Design, we need to introduce service interfaces and their implementations. Here is the extended UML diagram with service interfaces and their implementations for the given domain model:
+
+```plantuml
+@startuml
+class User {
+  +String name
+  +String email
+  +void login()
+}
+class Order {
+  +int orderId
+  +Date date
+  +void placeOrder()
+}
+interface UserService {
+  +User getUserById(int userId)
+  +void updateUser(User user)
+}
+
+interface OrderService {
+  +Order getOrderById(int orderId)
+  +void createOrder(Order order)
+}
+
+class UserServiceImpl {
+ + User getUserById(int userId)
+  +void updateUser(User user)
+}
+
+class OrderServiceImpl {
+  +Order getOrderById(int orderId)
+  +void createOrder(Order order)
+}
+
+User -- Order
+UserService ..> User
+OrderService ..> Order
+UserServiceImpl ..> UserService
+OrderServiceImpl ..> OrderService
+@enduml
+```
+
+In this diagram:
+- `UserService` interface defines operations related to user management such as retrieving a user by ID and updating a user.
+- `OrderService` interface defines operations related to order management such as retrieving an order by ID and creating an order.
+- `UserServiceImpl` class implements the `UserService` interface providing the actual implementation of user-related operations.
+- `OrderServiceImpl` class implements the `OrderService` interface providing the actual implementation of order-related operations.
+
+This structure separates concerns and provides a clear separation between domain entities and their corresponding services.

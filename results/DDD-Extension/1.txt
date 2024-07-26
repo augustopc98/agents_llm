@@ -1,0 +1,49 @@
+Sure, I will extend the UML diagram to include the repository layer. Here is the updated diagram with repository interfaces and implementations for `User` and `Order` entities:
+
+```plantuml
+@startuml
+class User {
+  +String name
+  +String email
+  +void login()
+}
+class Order {
+  +int orderId
+  +Date date
+  +void placeOrder()
+}
+
+interface UserRepository {
+  +findByEmail(email: String): User
+  +save(user: User): void
+}
+
+interface OrderRepository {
+  +findById(orderId: int): Order
+  +save(order: Order): void
+}
+
+class UserDatabaseRepository {
+  -users: Map<String, User>
+  +findByEmail(email: String): User
+  +save(user: User): void
+}
+
+class OrderDatabaseRepository {
+  -orders: Map<int, Order>
+  +findById(orderId: int): Order
+  +save(order: Order): void
+}
+
+User -- Order
+User .. UserRepository
+Order .. OrderRepository
+UserRepository <|-- UserDatabaseRepository
+OrderRepository <|-- OrderDatabaseRepository
+@enduml
+```
+
+In this updated diagram:
+- `UserRepository` and `OrderRepository` are the repository interfaces defining the common operations.
+- `UserDatabaseRepository` and `OrderDatabaseRepository` are concrete implementations of the repository interfaces using an in-memory storage (`Map`).
+- Associations between `User` and `UserRepository`, and `Order` and `OrderRepository` represent that repositories handle data access for their respective entities.
