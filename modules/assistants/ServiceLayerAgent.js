@@ -1,17 +1,25 @@
 import OpenAI from "openai";
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY
+});
 
 export const name = "ServiceLayerAgent";
 
-const openai = new OpenAI();
-
 async function createServiceLayerAgent() {
-    const serviceLayerAgent = await openai.beta.assistants.create({
-        instructions:
-            "You are an expert in Domain-Driven Design (DDD). Extend the provided PlantUML class diagram by defining the service layer. Generate the service interfaces and implementations based on the given domain model.",
-        name: "ServiceLayerAgent",
-        model: "gpt-3.5-turbo"
-    });
-    return serviceLayerAgent;
+    return async function extendUMLWithServiceLayer(umlDescription) {
+        const response = await openai.chat.completions.create({
+            model: "gpt-3.5-turbo",
+            messages: [
+                { role: "user", content: `Extend the following UML diagram with a service layer following Domain-Driven Design (DDD) in PlantUML format. Ensure the output is well-structured and correct:\n\n${umlDescription}\n\nProvide the output in PlantUML format.` }
+            ],
+        });
+
+        return response.choices[0].message.content;
+    }
 }
 
 export { createServiceLayerAgent };

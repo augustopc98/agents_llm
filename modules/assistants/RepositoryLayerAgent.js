@@ -1,17 +1,25 @@
 import OpenAI from "openai";
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY
+});
 
 export const name = "RepositoryLayerAgent";
 
-const openai = new OpenAI();
-
 async function createRepositoryLayerAgent() {
-    const repositoryLayerAgent = await openai.beta.assistants.create({
-        instructions:
-            "You are an expert in Domain-Driven Design (DDD). Extend the provided PlantUML class diagram by defining the repository layer. Generate the repository interfaces and implementations based on the given domain model.",
-        name: "RepositoryLayerAgent",
-        model: "gpt-3.5-turbo"
-    });
-    return repositoryLayerAgent;
+    return async function extendUMLWithRepositoryLayer(umlDescription) {
+        const response = await openai.chat.completions.create({
+            model: "gpt-3.5-turbo",
+            messages: [
+                { role: "user", content: `Extend the following UML diagram with a repository layer following Domain-Driven Design (DDD) in PlantUML format. Ensure the output is well-structured and correct:\n\n${umlDescription}\n\nProvide the output in PlantUML format.` }
+            ],
+        });
+
+        return response.choices[0].message.content;
+    }
 }
 
 export { createRepositoryLayerAgent };

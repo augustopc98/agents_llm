@@ -1,17 +1,25 @@
 import OpenAI from "openai";
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY
+});
 
 export const name = "SpringBootCodeAgent";
 
-const openai = new OpenAI();
-
 async function createSpringBootCodeAgent() {
-    const springBootCodeAgent = await openai.beta.assistants.create({
-        instructions:
-            "You are an expert in Spring Boot and Domain-Driven Design (DDD). Generate Spring Boot code for the provided PlantUML class diagram. Implement the service, repository layers, and necessary configurations.",
-        name: "SpringBootCodeAgent",
-        model: "gpt-3.5-turbo"
-    });
-    return springBootCodeAgent;
+    return async function generateSpringBootCode(umlDescription) {
+        const response = await openai.chat.completions.create({
+            model: "gpt-3.5-turbo",
+            messages: [
+                { role: "user", content: `Generate comprehensive Spring Boot code for the following UML diagram extended with Domain-Driven Design (DDD). Ensure the code includes well-defined interfaces, repositories, services, and necessary configurations:\n\n${umlDescription}\n\nProvide the output in PlantUML format.` }
+            ],
+        });
+
+        return response.choices[0].message.content;
+    }
 }
 
 export { createSpringBootCodeAgent };
