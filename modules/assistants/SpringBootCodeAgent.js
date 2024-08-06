@@ -12,7 +12,7 @@ export const name = "SpringBootCodeAgent";
 async function createSpringBootCodeAgent() {
     return async function generateSpringBootCode(umlDescription) {
         const response = await openai.chat.completions.create({
-            model: "gpt-3.5-turbo",
+            model: "gpt-4o",
             messages: [
                 { role: "user", content: `Generate comprehensive Spring Boot code for the following UML diagram extended with Domain-Driven Design (DDD). Ensure the code includes well-defined interfaces, repositories, services, and necessary configurations:\n\n${umlDescription}\n\nProvide the output in PlantUML format.` }
             ],

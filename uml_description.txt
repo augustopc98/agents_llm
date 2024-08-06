@@ -1,10 +1,10 @@
 Class Diagram:
-- Class: User
+- Class: Buyer
     - Attributes: id (int), name (string), email (string)
-    - Methods: getUserDetails(), setEmail(email)
-    - Relationships: User 1..* Order (A user can have multiple orders)
+    - Methods: getBuyerDetails(), setEmail(email), createBuyer(), updateBuyer(), deleteBuyer(), listBuyers()
+    - Relationships: Buyer 1..* Order (A buyer can have multiple orders)
 
 - Class: Order
-    - Attributes: orderId (int), orderDate (date), userId (int)
-    - Methods: getOrderDetails(), setOrderDate(orderDate), getUser()
-    - Relationships: Order *..1 User (An order belongs to one user)
+    - Attributes: orderId (int), orderDate (date), buyerId (int)
+    - Methods: getOrderDetails(), setOrderDate(orderDate), createOrder(), updateOrder(), deleteOrder(), listOrders()
+    - Relationships: Order *..1 Buyer (An order belongs to one buyer)
