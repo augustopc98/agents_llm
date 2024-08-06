@@ -2,9 +2,3 @@ Class Diagram:
 - Class: Buyer
     - Attributes: id (int), name (string), email (string)
     - Methods: getBuyerDetails(), setEmail(email), createBuyer(), updateBuyer(), deleteBuyer(), listBuyers()
-    - Relationships: Buyer 1..* Order (A buyer can have multiple orders)
-
-- Class: Order
-    - Attributes: orderId (int), orderDate (date), buyerId (int)
-    - Methods: getOrderDetails(), setOrderDate(orderDate), createOrder(), updateOrder(), deleteOrder(), listOrders()
-    - Relationships: Order *..1 Buyer (An order belongs to one buyer)
