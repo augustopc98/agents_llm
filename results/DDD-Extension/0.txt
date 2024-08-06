@@ -1,49 +1,47 @@
-To implement the service layer in Domain-Driven Design, we need to introduce service interfaces and their implementations. Here is the extended UML diagram with service interfaces and their implementations for the given domain model:
+Certainly! Below is the extension of the UML diagram with a service layer following Domain-Driven Design (DDD) principles, in PlantUML format:
 
 ```plantuml
 @startuml
-class User {
-  +String name
-  +String email
-  +void login()
-}
-class Order {
-  +int orderId
-  +Date date
-  +void placeOrder()
-}
-interface UserService {
-  +User getUserById(int userId)
-  +void updateUser(User user)
+
+' Define the Buyer class
+class Buyer {
+    - id: int
+    - name: string
+    - email: string
+    + getBuyerDetails(): void
+    + setEmail(email: string): void
+    + createBuyer(): void
+    + updateBuyer(): void
+    + deleteBuyer(): void
+    + listBuyers(): void
 }
 
-interface OrderService {
-  +Order getOrderById(int orderId)
-  +void createOrder(Order order)
+' Define the BuyerService interface
+interface BuyerService {
+    + getBuyerDetails(id: int): Buyer
+    + createBuyer(name: string, email: string): Buyer
+    + updateBuyer(id: int, name: string, email: string): Buyer
+    + deleteBuyer(id: int): void
+    + listBuyers(): List<Buyer>
 }
 
-class UserServiceImpl {
- + User getUserById(int userId)
-  +void updateUser(User user)
+' Define the BuyerServiceImpl class that implements BuyerService
+class BuyerServiceImpl {
+    + getBuyerDetails(id: int): Buyer
+    + createBuyer(name: string, email: string): Buyer
+    + updateBuyer(id: int, name: string, email: string): Buyer
+    + deleteBuyer(id: int): void
+    + listBuyers(): List<Buyer>
 }
 
-class OrderServiceImpl {
-  +Order getOrderById(int orderId)
-  +void createOrder(Order order)
-}
+' Define relationships
+BuyerService <|.. BuyerServiceImpl
+BuyerServiceImpl ..> Buyer
 
-User -- Order
-UserService ..> User
-OrderService ..> Order
-UserServiceImpl ..> UserService
-OrderServiceImpl ..> OrderService
 @enduml
 ```
 
-In this diagram:
-- `UserService` interface defines operations related to user management such as retrieving a user by ID and updating a user.
-- `OrderService` interface defines operations related to order management such as retrieving an order by ID and creating an order.
-- `UserServiceImpl` class implements the `UserService` interface providing the actual implementation of user-related operations.
-- `OrderServiceImpl` class implements the `OrderService` interface providing the actual implementation of order-related operations.
-
-This structure separates concerns and provides a clear separation between domain entities and their corresponding services.
+In this PlantUML diagram:
+- The `Buyer` class represents the domain entity.
+- The `BuyerService` interface represents the service layer that provides domain-related operations.
+- `BuyerServiceImpl` is the implementation of the `BuyerService` interface, encapsulating business logic and coordinating the domain operations.

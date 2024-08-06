@@ -47,14 +47,16 @@ You will generate comprehensive Spring Boot code for the following UML diagram e
    - Create controller classes for handling HTTP requests.
    - Provide configurations for the application (e.g., database configurations).
 
-6. **Generate PlantUML**:
-   - Provide the resulting PlantUML diagram that represents the final state of the model after applying DDD.
+6. **Usage Instructions**:
+   - Explain how to run the application using Maven commands.
+   - Provide details on accessing the API endpoints using tools like Postman or curl.
+   - Include any necessary configurations or setup steps for the database (H2) and application.
 
 Here is the UML description to base your code on:
 \`\`\`plaintext
 ${umlDescription}
 \`\`\`
-Ensure the output is well-structured and correct, providing all necessary explanations and code in a clear, guided manner. Also, include the PlantUML code representing the final model at the end.
+Ensure the output is well-structured and correct, providing all necessary explanations and code in a clear, guided manner. Also, include the usage instructions for the generated application at the end.
 `
                 }
             ],
