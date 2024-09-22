@@ -41,9 +41,10 @@ You will generate comprehensive Spring Boot code for the following UML diagram e
 5. **Step-by-Step Coding**:
    - Start with the \`pom.xml\` file to include all necessary dependencies.
    - Create the main application class (e.g., \`DemoApplication\`).
-   - Define entity classes based on the UML diagram provided.
-   - Create repository interfaces for the entities.
-   - Implement service classes for the entities.
+   - Generate code from the classes in the UML diagram provided.
+   "- Define entity classes based on the UML diagram provided.
+   "- Create repository interfaces for the entities.
+   "- Implement service classes for the entities.
    - Create controller classes for handling HTTP requests.
    - Provide configurations for the application (e.g., database configurations).
 

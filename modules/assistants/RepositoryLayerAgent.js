@@ -14,7 +14,7 @@ async function createRepositoryLayerAgent() {
         const response = await openai.chat.completions.create({
             model: "gpt-4o",
             messages: [
-                { role: "user", content: `Extend the following UML diagram with a repository layer following Domain-Driven Design (DDD) in PlantUML format. Ensure the output is well-structured and correct:\n\n${umlDescription}\n\nProvide the output in PlantUML format.` }
+                { role: "user", content: `Extend the following UML diagram that has a service layer with a repository layer following Domain-Driven Design (DDD) in PlantUML format. Ensure the output includes all necessary classes, interfaces, methods, and relationships for a repository layer:\n\n${umlDescription}\n\nProvide the output in PlantUML format.` }
             ],
         });
 
